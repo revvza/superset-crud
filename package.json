@@ -9,16 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie": "^1.0.2",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "mysql2": "^3.11.5",
+    "next": "15.0.4",
+    "next-cookies": "^2.0.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.0.4"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/bcrypt": "^5.0.2",
+    "@types/joi": "^17.2.2",
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^8",
-    "eslint-config-next": "15.0.4"
+    "eslint-config-next": "15.0.4",
+    "typescript": "^5"
   }
 }
