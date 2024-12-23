@@ -1,4 +1,4 @@
-import styles from '@/styles/Home.module.css';
+import styles from '@/styles/dashboard.module.css';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
@@ -42,8 +42,8 @@ const Dashboard = () => {
   const Navbar = () => (
     <div className={styles.navbar}>
       <div className={styles.navLeft}>
-      <Link href="/" className={styles.backButton} onClick={handleLogout}>
-        ← Logout
+      <Link href="/" className={styles.logoutButton} onClick={handleLogout}>
+        Logout
       </Link>
       </div>
     </div>

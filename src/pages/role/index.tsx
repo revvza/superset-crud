@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styles from '@/styles/Home.module.css';
+import styles from '@/styles/dashboard.module.css';
 import { Role } from '@/lib/type'; // Import interface Role
 import Link from 'next/link';
 

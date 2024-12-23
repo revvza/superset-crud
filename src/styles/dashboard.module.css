@@ -293,3 +293,19 @@
   background-color: #0070f3;
   color: #ffffff;
 }
+
+.logoutButton {
+  text-decoration: none;
+  margin-top: auto;
+  background: #e74c3c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  background: #c0392b;
+}

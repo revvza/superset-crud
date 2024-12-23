@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(to right, #f0f4f8, #d9e2ec)
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: white;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.sidebarButton {
+  background: #333;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.sidebarButton:hover {
+  background: #4caf50;
+}
+
+.activeButton {
+  background: #4caf50;
+}
+
+.logoutButton {
+  margin-top: auto;
+  background: #e74c3c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  background: #c0392b;
+}
+
+/* Area tampilan frame */
+.frameContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #ecf0f1;
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+}

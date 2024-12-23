@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import knex from '@/lib/db'; // Pastikan knex dikonfigurasi dengan benar
+import knex from '@/lib/db';
 import * as cookie from 'cookie';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -11,12 +11,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
-      // Query untuk mengambil user berdasarkan username
       const result = await knex('user')
         .join('userrole', 'user.user_id', '=', 'userrole.user_id')
         .join('role', 'userrole.role_id', '=', 'role.role_id')
         .where('user.username', username)
-        .select('user.*', 'role.role_name') // Menambahkan role_name agar bisa digunakan
+        .select('user.*', 'role.role_name')
         .first();
 
       if (!result) {
@@ -25,38 +24,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const user = result;
 
-      // Pastikan role ada sebelum melanjutkan
       if (!user.role_name) {
         return res.status(500).json({ error: 'Role information missing' });
       }
 
-      // Periksa password
       if (user.password === password) {
-        // Ambil frames berdasarkan role
+        // Query frames berdasarkan role
         const frames = await knex('frame')
           .join('framerole', 'frame.frame_id', '=', 'framerole.frame_id')
           .join('role', 'framerole.role_id', '=', 'role.role_id')
           .where('role.role_name', user.role_name)
-          .select('frame.frame_name', 'frame.frame_url');
-      
-        console.log("Frames to be stored in cookie:", frames); // Tambahkan log ini
-      
-        // Simpan role dan frames dalam cookies
+          .select('frame.frame_id', 'frame.frame_name', 'frame.frame_url');
+
+        // Set cookie 'role' dan 'frames'
         res.setHeader('Set-Cookie', [
           cookie.serialize('role', user.role_name, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 60 * 60 * 24, // 1 hari
+            maxAge: 60 * 60 * 24,
             path: '/',
           }),
           cookie.serialize('frames', JSON.stringify(frames), {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 60 * 60 * 24, // 1 hari
+            maxAge: 60 * 60 * 24,
             path: '/',
           }),
         ]);
-      
+
         return res.status(200).json({ message: 'Login successful' });
       } else {
         return res.status(401).json({ error: 'Invalid credentials' });

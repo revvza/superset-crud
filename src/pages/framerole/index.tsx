@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import styles from '@/styles/Home.module.css';
+import styles from '@/styles/dashboard.module.css';
 import { FrameRole } from '@/lib/type';
 import { Frame } from '@/lib/type';
 import Link from 'next/link';
