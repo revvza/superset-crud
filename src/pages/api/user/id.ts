@@ -13,37 +13,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
   switch (method) {
-    case 'GET': // Get user by ID
+    case 'GET': 
       try {
         const user = await db('USER').where('user_id', id).first();
         if (!user) return res.status(404).json({ message: 'User not found' });
         res.status(200).json(user);
       } catch (error) {
-        console.error(error); // Gunakan untuk mencatat log error
+        console.error(error); 
         res.status(500).json({ message: 'Error fetching user' });
       }
       break;
 
-    case 'POST': // Create new user
+    case 'POST': 
       try {
         const { username, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
         const [user_id] = await db('USER').insert({ username, password: hashedPassword });
         res.status(201).json({ user_id });
       } catch (error) {
-        console.error(error); // Gunakan untuk mencatat log error
+        console.error(error); 
         res.status(500).json({ message: 'Error creating user' });
       }
       break;
 
-    case 'PUT': // Update user by ID
+    case 'PUT': 
       try {
         const { username, password } = req.body;
         const hashedPassword = password ? await bcrypt.hash(password, 10) : undefined;
         await db('USER').where('user_id', id).update({ username, password: hashedPassword });
         res.status(200).json({ message: 'User updated' });
       } catch (error) {
-        console.error(error); // Gunakan untuk mencatat log error
+        console.error(error); 
         res.status(500).json({ message: 'Error updating user' });
       }
       break;
